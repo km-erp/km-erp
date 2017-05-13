@@ -1,101 +1,120 @@
+<!--dialog do założenia nowego użytkownika-->
 <p-dialog header="Rejestruj" [(visible)]="reg" modal = "true" width = "300" responsive = "true">
-  <p>{{ts('registerEmail', usrName)}}</p>
-
-  <p>
-    {{ts('lblPassword')}}
-    <input 
-      type="password" 
-      pPassword [(ngModel)]="usrPwd2" 
-      promptLabel = "{{ts('usrPwd')}}" 
-      weakLabel = "{{ts('usrPwdWeak')}}"
-      mediumLabel = "{{ts('usrPwdMedium')}}" 
-      strongLabel = "{{ts('usrPwdStrong')}}"
-      placeholder = "{{ts('password')}}"/>
-    <button pButton type="button" (click)="registerByEmail()" label = "{{ts('registerByEmail')}}"  class = "km_element_center"></button>
-  </p>
-</p-dialog>
-
-<p-panel header = "{{ts('welcome')}}" [toggleable] = "false">
   <div class="ui-grid ui-grid-responsive ui-grid-pad">
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">{{ts('registerEmail', usrName)}}</div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">{{ts('lblPassword')}}</div>
+    </div>
     <div class="ui-grid-row">
       <div class="ui-grid-col-12">
-        <p-messages [value]="error"></p-messages>
-      </div>
-    </div>
-
-    <div class="ui-grid-row">
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-2 km_element_right">
-        {{ts('lblUser')}}
-      </div>
-      <div class="ui-grid-col-2">
-        <input type="email" pInputText [(ngModel)]="usrName" placeholder = "{{ts('email')}}"/>
-      </div>
-      <div class="ui-grid-col-2">
-        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}"></button>
-      </div>
-      <div class="ui-grid-col-2">
-      </div>
-    </div>
-
-    <div class="ui-grid-row">
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-2 km_element_right">
-        {{ts('lblPassword')}}
-      </div>
-      <div class="ui-grid-col-2">
         <input 
-            type="password" 
-            pPassword [(ngModel)]="usrPwd" 
-            promptLabel = "{{ts('usrPwd')}}" 
-            weakLabel = "{{ts('usrPwdWeak')}}"
-            mediumLabel = "{{ts('usrPwdMedium')}}" 
-            strongLabel = "{{ts('usrPwdStrong')}}"
-            placeholder = "{{ts('password')}}"/>
-      </div>
-      <div class="ui-grid-col-2">
-        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('forgotPwd')}}" width = "100"></button>
-      </div>
-      <div class="ui-grid-col-2">
+          type="password" 
+          pPassword [(ngModel)]="usrPwd1" 
+          promptLabel = "{{ts('usrPwd')}}" 
+          weakLabel = "{{ts('usrPwdWeak')}}"
+          mediumLabel = "{{ts('usrPwdMedium')}}" 
+          strongLabel = "{{ts('usrPwdStrong')}}"
+          placeholder = "{{ts('password')}}"
+          indicator = "true"/>
       </div>
     </div>
-
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-
     <div class="ui-grid-row">
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-2">
-        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}"  class = "km_element_center"></button>
-      </div>
-      <div class="ui-grid-col-2">
-        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}"  class = "km_element_center"></button>
-      </div>
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-2"></div>
-
+      <div class="ui-grid-col-12">{{ts('lblPassword2')}}</div>
     </div>
-
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
-
     <div class="ui-grid-row">
-      <div class="ui-grid-col-6">
-        <button pButton type="button" (click)="loginByGoogle()" label = "{{ts('loginByGoogle')}}" class = "km_element_center"></button>
-      </div>
-      <div class="ui-grid-col-6">
-        <button pButton type="button" (click)="loginByFacebook()" label = "{{ts('loginByFacebook')}}" class = "km_element_center"></button>
+      <div class="ui-grid-col-12">
+        <input 
+          type="password" 
+          pPassword [(ngModel)]="usrPwd2" 
+          promptLabel = "{{ts('usrPwd')}}" 
+          weakLabel = "{{ts('usrPwdWeak')}}"
+          mediumLabel = "{{ts('usrPwdMedium')}}" 
+          strongLabel = "{{ts('usrPwdStrong')}}"
+          placeholder = "{{ts('password')}}"
+          indicator = "false"/>
       </div>
     </div>
-
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <button pButton type="button" (click)="registerByEmail()" label = "{{ts('registerByEmail')}}"  class = "km_element_center"></button>
+      </div>
+    </div>
   </div>
-</p-panel>
+</p-dialog>
+
+<!--komunikaty-->
+<p-messages [value]="error"></p-messages>
+
+<!--dialog do logowania-->
+<div style = "position: absolute;top: 50%; left: 50%; width: 300px; transform: translateY(-50%)  translateX(-50%);">
+  <p-panel header = "{{ts('welcome')}}" [toggleable] = "false">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad">
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">{{ts('lblUser')}}</div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <input 
+            type="email" 
+            pInputText [(ngModel)]="usrName" 
+            placeholder = "{{ts('email')}}"
+            style = "width:100%"/>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">{{ts('lblPassword')}}</div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <input 
+              type="password" 
+              pPassword [(ngModel)]="usrPwd" 
+              promptLabel = "{{ts('usrPwd')}}" 
+              weakLabel = "{{ts('usrPwdWeak')}}"
+              mediumLabel = "{{ts('usrPwdMedium')}}" 
+              strongLabel = "{{ts('usrPwdStrong')}}"
+              placeholder = "{{ts('password')}}"
+              indicator = false
+              style = "width:100%"/>
+        </div>
+      </div>
+      <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+      <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+      <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+      <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+      <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}" style = "width:100%"></button>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <button pButton type="button" (click)="loginByGoogle()" label = "{{ts('loginByGoogle')}}" class = "km_element_center" style = "width: 100%"></button>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <button pButton type="button" (click)="loginByFacebook()" label = "{{ts('loginByFacebook')}}" class = "km_element_center"  style = "width: 100%"></button>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <button pButton type="button" (click)="newUser()" label = "{{ts('newUser')}}" style = "width: 100%"></button>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <button pButton type="button" (click)="forgotPwd()" label = "{{ts('forgotPwd')}}" style = "width: 100%"></button>
+        </div>
+      </div>
+    </div>
+  </p-panel>
+
+</div>

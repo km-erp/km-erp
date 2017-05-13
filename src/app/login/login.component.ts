@@ -21,6 +21,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   error: png.Message[] = [];
   usrName: string = 'a@a.pl';
   usrPwd: string = 'aaaaaa';
+  usrPwd1: string = '';
   usrPwd2: string = '';
   reg: boolean = false;
 
@@ -59,9 +60,6 @@ export class LoginComponent extends BaseComponent implements OnInit {
        .catch((a: fb.FirebaseError) => {
          this.dm.logedIn = false;
          this.error.push({severity:'error', summary: this.ts('Komunikat'), detail: this.ts(a.code)});
-         if (a.code.toLocaleLowerCase() === 'auth/user-not-found'){
-           this.reg = true;
-         } 
        });
   }
   loginByGoogle() {
@@ -73,12 +71,31 @@ export class LoginComponent extends BaseComponent implements OnInit {
      this.loginByProvider(provider);
   }
 
-  registerByEmail(){
-    if (this.usrPwd === this.usrPwd2){
-      this.login(this.afa.auth.createUserWithEmailAndPassword(this.usrName, this.usrPwd))
-        .catch((a: fb.FirebaseError) => {
-          this.error.push({severity:'error', summary: this.ts('Komunikat'), detail: this.ts(a.code)});
-        });
+  newUser(){
+    if (this.usrName.trim() === ""){
+      this.error.push({severity:'error', summary: this.ts('Komunikat'), detail: this.ts("usrEmpty")});  
+      return;    
     }
+
+    this.error = [];
+    this.usrPwd1 = "";
+    this.usrPwd2 = "";
+    this.reg = true;
+  }
+
+  registerByEmail(){
+    if (this.usrPwd1 !== this.usrPwd2){
+      this.error.push({severity:'error', summary: this.ts('Komunikat'), detail: this.ts("usrPwdDif")});  
+      return;
+    }
+
+    this.login(this.afa.auth.createUserWithEmailAndPassword(this.usrName, this.usrPwd1))
+      .catch((a: fb.FirebaseError) => {
+        this.error.push({severity:'error', summary: this.ts('Komunikat'), detail: this.ts(a.code)});
+      });
+  }
+
+  forgotPwd(){
+
   }
 }
