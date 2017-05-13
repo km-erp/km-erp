@@ -1,0 +1,101 @@
+<p-dialog header="Rejestruj" [(visible)]="reg" modal = "true" width = "300" responsive = "true">
+  <p>{{ts('registerEmail', usrName)}}</p>
+
+  <p>
+    {{ts('lblPassword')}}
+    <input 
+      type="password" 
+      pPassword [(ngModel)]="usrPwd2" 
+      promptLabel = "{{ts('usrPwd')}}" 
+      weakLabel = "{{ts('usrPwdWeak')}}"
+      mediumLabel = "{{ts('usrPwdMedium')}}" 
+      strongLabel = "{{ts('usrPwdStrong')}}"
+      placeholder = "{{ts('password')}}"/>
+    <button pButton type="button" (click)="registerByEmail()" label = "{{ts('registerByEmail')}}"  class = "km_element_center"></button>
+  </p>
+</p-dialog>
+
+<p-panel header = "{{ts('welcome')}}" [toggleable] = "false">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <p-messages [value]="error"></p-messages>
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-2 km_element_right">
+        {{ts('lblUser')}}
+      </div>
+      <div class="ui-grid-col-2">
+        <input type="email" pInputText [(ngModel)]="usrName" placeholder = "{{ts('email')}}"/>
+      </div>
+      <div class="ui-grid-col-2">
+        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}"></button>
+      </div>
+      <div class="ui-grid-col-2">
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-2 km_element_right">
+        {{ts('lblPassword')}}
+      </div>
+      <div class="ui-grid-col-2">
+        <input 
+            type="password" 
+            pPassword [(ngModel)]="usrPwd" 
+            promptLabel = "{{ts('usrPwd')}}" 
+            weakLabel = "{{ts('usrPwdWeak')}}"
+            mediumLabel = "{{ts('usrPwdMedium')}}" 
+            strongLabel = "{{ts('usrPwdStrong')}}"
+            placeholder = "{{ts('password')}}"/>
+      </div>
+      <div class="ui-grid-col-2">
+        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('forgotPwd')}}" width = "100"></button>
+      </div>
+      <div class="ui-grid-col-2">
+      </div>
+    </div>
+
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-2">
+        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}"  class = "km_element_center"></button>
+      </div>
+      <div class="ui-grid-col-2">
+        <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}"  class = "km_element_center"></button>
+      </div>
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-2"></div>
+
+    </div>
+
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+    <div class="ui-grid-row"><div class="ui-grid-col-12"></div></div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-6">
+        <button pButton type="button" (click)="loginByGoogle()" label = "{{ts('loginByGoogle')}}" class = "km_element_center"></button>
+      </div>
+      <div class="ui-grid-col-6">
+        <button pButton type="button" (click)="loginByFacebook()" label = "{{ts('loginByFacebook')}}" class = "km_element_center"></button>
+      </div>
+    </div>
+
+  </div>
+</p-panel>
