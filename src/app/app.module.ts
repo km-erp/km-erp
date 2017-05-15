@@ -49,6 +49,7 @@ export const firebaseConfig = {
     pn.ConfirmDialogModule,
     pn.DialogModule,
     pn.DropdownModule,
+    pn.GrowlModule,
     pn.InputMaskModule,
     pn.InputTextModule,
     pn.ListboxModule,
@@ -57,6 +58,7 @@ export const firebaseConfig = {
     pn.PasswordModule,
     pn.RadioButtonModule,
     pn.SplitButtonModule,
+    pn.TooltipModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
