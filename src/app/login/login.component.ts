@@ -24,6 +24,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   usrPwd2: string = 'Haslo123';
   shwReg: boolean = false;
   shwReset: boolean = false;
+  captchaChecked: boolean = false;
 
 
   constructor(
@@ -84,6 +85,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       return;    
     }
 
+    this.captchaChecked = false;
     this.usrPwd2 = "";
     this.shwReg = true;
   }
@@ -103,12 +105,21 @@ export class LoginComponent extends BaseComponent implements OnInit {
     this.login(this.afa.auth.createUserWithEmailAndPassword(this.usrName, this.usrPwd)).catch((a: fb.FirebaseError) => this.err(this.ts(a.code, this.usrName)));
   }
 
-// reset hasło do emai
+// reset hasło do email
   resetByEmail(){
     this.afa.auth.sendPasswordResetEmail(this.usrName)
       .then(() => {
         this.shwReset = false;
         this.err(this.ts("emailSent", this.usrName));})
       .catch((a: fb.FirebaseError) => this.err(this.ts(a.code)));
+  }
+
+  captchaOk(event) {
+    this.captchaChecked = true;
+  }  
+
+  cancel(){
+    this.shwReg = false;
+    this.shwReset = false;
   }
 }

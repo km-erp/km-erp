@@ -57,6 +57,7 @@ export const firebaseConfig = {
     pn.PanelModule,
     pn.PasswordModule,
     pn.RadioButtonModule,
+    pn.CaptchaModule,
     pn.SplitButtonModule,
     pn.TooltipModule,
 

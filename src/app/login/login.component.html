@@ -85,7 +85,7 @@
 
       <div class="ui-grid-row" *ngIf = "shwReg && !shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="registerByEmail()" label = "{{ts('registerByEmail')}}"  style = "width: 100%"></button>
+          <button pButton type="button" (click)="registerByEmail()" label = "{{ts('registerByEmail')}}" [disabled] = "!captchaChecked" style = "width: 100%"></button>
         </div>
       </div>
       <div class="ui-grid-row" *ngIf = "!shwReg && shwReset">
@@ -93,7 +93,18 @@
           <button pButton type="button" (click)="resetByEmail()" label = "{{ts('resetByEmail')}}"  style = "width: 100%"></button>
         </div>
       </div>
+      <div class="ui-grid-row" *ngIf = "shwReg || shwReset">
+        <div class="ui-grid-col-12">
+          <button pButton type="button" (click)="cacel()" label = "{{ts('cancel')}}"  style = "width: 100%"></button>
+        </div>
+      </div>
     </div>
   </p-panel>
+
+  <div  *ngIf = "shwReg && !shwReset">
+    <div >
+      <p-captcha siteKey="6LeKpCEUAAAAAMLEBCBfxOJ58F_SbG9CQOeHzsuK" (onResponse)="captchaOk($event)"></p-captcha>
+    </div>
+  </div>
 
 </div>

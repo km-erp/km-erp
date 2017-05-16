@@ -5,6 +5,7 @@ export class Trans{
 
 export const cTrans: Trans[] = [
 // app
+  {id: 'cancel', pl: 'Anuluj'},
   {id: 'email', pl: 'email'},
   {id: 'emailSent', pl: 'Email wysłany pod adres "{0}"'},
   {id: 'forgotPwd', pl: 'Niepamiętam hasła'},
