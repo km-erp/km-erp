@@ -28,7 +28,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
 
   constructor(
-    public dataMgrService: DataMgrService,
+    protected dataMgrService: DataMgrService,
     private cs: png.ConfirmationService, 
     private afa: AngularFireAuth) 
   {
@@ -38,6 +38,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       this.usrName = 'a@a.pl';
       this.usrPwd = 'Haslo123';
       this.usrPwd2 = 'Haslo123';
+      this.dm.logedIn = true;
     }
   }
 

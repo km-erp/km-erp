@@ -11,7 +11,7 @@ export class BaseComponent implements OnInit {
   b: boolean = true;
 
   constructor(
-    public dataMgrService: DataMgrService) { }
+    protected dataMgrService: DataMgrService) { }
 
   ngOnInit() {
   }
