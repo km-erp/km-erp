@@ -58,44 +58,103 @@
 
       <div class="ui-grid-row" *ngIf = "!shwReg && !shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="loginByEmail()" label = "{{ts('loginByEMail')}}" style = "width:100%"></button>
+          <button 
+            pButton 
+            type="button" 
+            (click)="loginByEmail()" 
+            label = "{{ts('loginByEMail')}}" 
+            icon = "fa-user"
+            style = "width:100%"></button>
         </div>
       </div>
       <div class="ui-grid-row" *ngIf = "!shwReg && !shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="loginByGoogle()" label = "{{ts('loginByGoogle')}}" class = "km_element_center" style = "width: 100%"></button>
+          <button 
+            pButton type="button" 
+            (click)="loginByGoogle()" 
+            label = "{{ts('loginByGoogle')}}" 
+            class = "km_element_center" 
+            icon = "fa-google"
+            style = "width: 100%">
+          </button>
         </div>
       </div>
       <div class="ui-grid-row" *ngIf = "!shwReg && !shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="loginByFacebook()" label = "{{ts('loginByFacebook')}}" class = "km_element_center"  style = "width: 100%"></button>
+          <button 
+            pButton 
+            type="button" 
+            (click)="loginByFacebook()" 
+            label = "{{ts('loginByFacebook')}}" 
+            class = "km_element_center" 
+            icon = "fa-facebook" 
+            style = "width: 100%">
+          </button>
         </div>
       </div>
 
       <div class="ui-grid-row" *ngIf = "!shwReg && !shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="forgotPwd()" label = "{{ts('forgotPwd')}}" class = "ui-button-secondary" style = "width: 100%"></button>
+          <button 
+            pButton 
+            type="button" 
+            (click)="forgotPwd()" 
+            label = "{{ts('forgotPwd')}}" 
+            class = "ui-button-secondary" 
+            icon = "fa-meh-o"
+            style = "width: 100%">
+          </button>
         </div>
       </div>
       <div class="ui-grid-row" *ngIf = "!shwReg && !shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="newUser()" label = "{{ts('newUser')}}" class = "ui-button-secondary" style = "width: 100%"></button>
+          <button 
+            pButton 
+            type="button" 
+            (click)="newUser()" 
+            label = "{{ts('newUser')}}" 
+            class = "ui-button-secondary" 
+            icon = "fa-user-plus"
+            style = "width: 100%">
+          </button>
         </div>
       </div>
 
       <div class="ui-grid-row" *ngIf = "shwReg && !shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="registerByEmail()" label = "{{ts('registerByEmail')}}" [disabled] = "!captchaChecked" style = "width: 100%"></button>
+          <button 
+            pButton 
+            type="button" 
+            (click)="registerByEmail()" 
+            label = "{{ts('registerByEmail')}}" 
+            [disabled] = "!captchaChecked" 
+            icon = "fa-user-plus"
+            style = "width: 100%">
+          </button>
         </div>
       </div>
       <div class="ui-grid-row" *ngIf = "!shwReg && shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="resetByEmail()" label = "{{ts('resetByEmail')}}"  style = "width: 100%"></button>
+          <button 
+            pButton 
+            type="button" 
+            (click)="resetByEmail()" 
+            label = "{{ts('resetByEmail')}}"  
+            icon = "fa-send"
+            style = "width: 100%">
+          </button>
         </div>
       </div>
       <div class="ui-grid-row" *ngIf = "shwReg || shwReset">
         <div class="ui-grid-col-12">
-          <button pButton type="button" (click)="cacel()" label = "{{ts('cancel')}}"  style = "width: 100%"></button>
+          <button 
+            pButton 
+            type="button" 
+            (click)="cancel()" 
+            label = "{{ts('cancel')}}"  
+            icon = "fa-remove"
+            style = "width: 100%">
+          </button>
         </div>
       </div>
     </div>

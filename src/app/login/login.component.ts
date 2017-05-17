@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
@@ -19,9 +19,9 @@ import {DataMgrService} from '../data-mgr.service';
 export class LoginComponent extends BaseComponent implements OnInit {
 
   error: png.Message[] = [];
-  usrName: string = 'a@a.pl';
-  usrPwd: string = 'Haslo123';
-  usrPwd2: string = 'Haslo123';
+  usrName: string = '';
+  usrPwd: string = '';
+  usrPwd2: string = '';
   shwReg: boolean = false;
   shwReset: boolean = false;
   captchaChecked: boolean = false;
@@ -30,7 +30,16 @@ export class LoginComponent extends BaseComponent implements OnInit {
   constructor(
     public dataMgrService: DataMgrService,
     private cs: png.ConfirmationService, 
-    private afa: AngularFireAuth) {super(dataMgrService);}
+    private afa: AngularFireAuth) 
+  {
+    super(dataMgrService);
+
+    if (isDevMode()){
+      this.usrName = 'a@a.pl';
+      this.usrPwd = 'Haslo123';
+      this.usrPwd2 = 'Haslo123';
+    }
+  }
 
   ngOnInit() {
     
