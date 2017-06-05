@@ -14,6 +14,8 @@ export class MainComponent extends BaseComponent implements OnInit {
 
   private mnuMain: pn.MenuItem[];
 
+  private data: String;
+
   constructor(
     protected dataMgrService: DataMgrService) {
       super(dataMgrService);
@@ -22,7 +24,7 @@ export class MainComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.mnuMain = [
       {label: this.ts('mnuDoc'), icon: 'fa-files-o', items: [
-        {label: this.ts('mnuDocWarehouse'), command: (event) => {}},
+        {label: this.ts('mnuDocWarehouse'), command: (event) => {this.data = this.dm.token()}},
         {label: this.ts('mnuDocStocktaking'), command: (event) => {}}
       ]},
       {label: this.ts('mnuFiles'), icon: 'fa-folder-open', items: [

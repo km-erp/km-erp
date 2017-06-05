@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataMgrService } from '../data-mgr.service';
+import * as png from 'primeng/primeng';
 
 @Component({
   selector: 'app-base',
@@ -7,8 +8,6 @@ import { DataMgrService } from '../data-mgr.service';
   styles: []
 })
 export class BaseComponent implements OnInit {
-
-  b: boolean = true;
 
   constructor(
     protected dataMgrService: DataMgrService) { }
@@ -20,8 +19,15 @@ export class BaseComponent implements OnInit {
     return this.dataMgrService;
   }
 
-  ts(s: string, ...args): string
-  {
+  ts(s: string, ...args): string{
     return this.dm.ts(s, args);
   }
+
+  error: png.Message[] = [];
+  err(sErr: string){
+    this.error = [];
+    this.error.push({severity:'error', summary:this.ts('Komunikat'), detail: sErr});    
+  }
+
+
 }

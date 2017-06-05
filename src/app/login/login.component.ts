@@ -10,6 +10,7 @@ import * as png from 'primeng/primeng';
 
 import {BaseComponent} from '../base/base.component';
 import {DataMgrService} from '../data-mgr.service';
+import {config} from '../config';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,6 @@ import {DataMgrService} from '../data-mgr.service';
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
-  error: png.Message[] = [];
   usrName: string = '';
   usrPwd: string = '';
   usrPwd2: string = '';
@@ -35,10 +35,10 @@ export class LoginComponent extends BaseComponent implements OnInit {
     super(dataMgrService);
 
     if (isDevMode()){
-      this.usrName = 'a@a.pl';
-      this.usrPwd = 'Haslo123';
-      this.usrPwd2 = 'Haslo123';
-      this.dm.logedIn = true;
+      this.usrName = config.prodUsr;
+      this.usrPwd = config.prodUsrPwd;
+      this.usrPwd2 = config.prodUsrPwd;
+      this.loginByEmail();
     }
   }
 
@@ -47,18 +47,13 @@ export class LoginComponent extends BaseComponent implements OnInit {
    
   }
 
-  err(sErr: string){
-    this.error = [];
-    this.error.push({severity:'error', summary:this.ts('Komunikat'), detail: sErr});    
-  }
-
-
 // logowanie:
   login(p: fb.Promise<any>): fb.Promise<any>{
     return p.then((a: fb.auth.UserCredential) => {
       this.dm.logedIn = true;
       this.shwReg = false;
       this.error = [];
+      this.dm.upgOk();
     });
 
   }
@@ -80,11 +75,11 @@ export class LoginComponent extends BaseComponent implements OnInit {
        });
   }
   loginByGoogle() {
-     var provider = new fb.auth.GoogleAuthProvider();
+     let provider = new fb.auth.GoogleAuthProvider();
      this.loginByProvider(provider);
   }
   loginByFacebook() {
-     var provider = new fb.auth.FacebookAuthProvider();
+     let provider = new fb.auth.FacebookAuthProvider();
      this.loginByProvider(provider);
   }
 

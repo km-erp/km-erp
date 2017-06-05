@@ -2,8 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import * as pn from 'primeng/primeng';    
 
@@ -18,28 +18,21 @@ import { DataMgrService } from './data-mgr.service';
 import { BaseComponent } from './base/base.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
-
-
-
-export const firebaseConfig = {
-  apiKey: "AIzaSyDH4iDqVyzW4v8B9-_Lg9iHAgJT6RKvZ5k",
-  authDomain: "km-erp.firebaseapp.com",
-  databaseURL: "https://km-erp.firebaseio.com",
-  projectId: "km-erp",
-  storageBucket: "km-erp.appspot.com",
-  messagingSenderId: "1059595035146"
-};
+import { config } from './config';
+import { UpgComponent } from './upg/upg.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BaseComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    UpgComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    JsonpModule,
     FormsModule,
     HttpModule,
     
@@ -63,7 +56,7 @@ export const firebaseConfig = {
     pn.SplitButtonModule,
     pn.TooltipModule,
 
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(config.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
