@@ -1,8 +1,11 @@
 <!--komunikaty-->
 <p-growl [value]="error"></p-growl>
 
-<p-messages [(value)]="upgmsg" [closable]="false"></p-messages>
+<p-panel header="Aktualizacja systemu">
+    {{progress}}
+</p-panel>
 
-<p>
-  upg works!
-</p>
+<p-panel header="Aktualizacja systemu" *ngIf="dm.rgtAdm">
+    <button pButton type="button" label="{{ts('upg')}}"></button>
+</p-panel>
+

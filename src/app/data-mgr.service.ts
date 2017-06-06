@@ -3,35 +3,48 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import {AngularFireAuth} from 'angularfire2/auth';
 
-import {cTrans} from './trans';
-import {config} from './config';
 import * as sf from 'typescript-string-operations/source/source';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise'
+import 'rxjs/add/operator/toPromise';
 
-class UpgParam{
+import {trans} from './trans';
+import {config} from './config';
+import {consts} from './consts';
+
+class StdParam{
   public authToken: String;
+}
+class UpgParam extends StdParam{
   public upgCall: number;
 }
+class RgtParam extends StdParam{
+  public rgtName: string;
+}
 
-export class UpgResult{
+class StdResult{
   public authorized: Boolean;
+}
+export class UpgResult extends StdResult{
   public requires: Boolean;
   public upgraded: Boolean;
   public versionDb: number;
   public versionRq: number;
+}
+export class RgtResult extends StdResult{
+  public has: Boolean;
 }
 
 
 @Injectable()
 export class DataMgrService {
 
-  private trans = cTrans;
+  private trans = trans;
   public logedIn: boolean = false;
   public upgraded: boolean = false;
+  public rgtAdm: boolean = false;
  
   constructor(
     private http: Http, 
@@ -56,29 +69,31 @@ export class DataMgrService {
     return this.afa.auth.currentUser.refreshToken;
   }
 
-  upgCall(fun: String): Promise<UpgResult>{
+  bck(fun: String, p: StdParam): Promise<any>{
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    let p: UpgParam = new UpgParam();
-    p.authToken = this.token();
-    p.upgCall = 0;
-
-    return this.http.post(config.backUrl + fun, p, options)
-      .toPromise()
-      .then(r => r.json() as UpgResult)
-      .catch();      
+    return this.http.post(config.bckUrl + fun, p, options).toPromise().then(r => r.json());      
   }
 
-  upg(): Promise<UpgResult>{
-    return this.upgCall("upg");
+  upg(call: number): Promise<UpgResult>{
+    let p: UpgParam = new UpgParam();
+    p.authToken = this.token();
+    p.upgCall = call;
+    return this.bck("upg", p) as Promise<UpgResult>;
   }
 
   upgOk(){
-    this.upgCall("upgOk").then(ur => this.upgraded = ur.upgraded.valueOf()).catch(() => this.upgraded = false);
+    let p: UpgParam = new UpgParam();
+    p.authToken = this.token();
+    p.upgCall = 0;
+    this.bck("upgOk", p).then(ur => this.upgraded = ur.upgraded.valueOf()).catch(() => this.upgraded = false);
   }
 
-  rightChk(right: String): boolean{
-    return true;
+  rgtChk(){
+    let p: RgtParam = new RgtParam;
+    p.authToken = this.token();
+    p.rgtName = consts.rgtAdm;
+    this.bck("rgtChk", p).then(ru => this.rgtAdm = ru.has.valueOf()).catch(() => this.rgtAdm = false);
   }
 
   

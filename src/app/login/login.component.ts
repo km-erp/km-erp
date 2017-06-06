@@ -4,13 +4,13 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
 import * as fb from 'firebase/app';
 import * as png from 'primeng/primeng';
-// import * as str from '../string';
  
 
 
 import {BaseComponent} from '../base/base.component';
 import {DataMgrService} from '../data-mgr.service';
 import {config} from '../config';
+import {consts} from '../consts';
 
 @Component({
   selector: 'app-login',
@@ -54,6 +54,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       this.shwReg = false;
       this.error = [];
       this.dm.upgOk();
+      this.dm.rgtChk();
     });
 
   }

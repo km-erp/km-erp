@@ -50,6 +50,7 @@ import { UpgComponent } from './upg/upg.component';
     pn.MessagesModule,
     pn.PanelModule,
     pn.PanelMenuModule,
+    pn.ProgressBarModule,
     pn.PasswordModule,
     pn.RadioButtonModule,
     pn.CaptchaModule,

@@ -1,5 +1,5 @@
 class Config{
-  backUrl = "http://localhost:8080/"
+  bckUrl = "http://localhost:8080/" // backend url
 
   firebase = {
     apiKey: "AIzaSyDH4iDqVyzW4v8B9-_Lg9iHAgJT6RKvZ5k",

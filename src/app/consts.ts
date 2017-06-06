@@ -1,5 +1,5 @@
 
-class Consts{
+export class Consts{
   rgtAdm = "adm"
 
 }

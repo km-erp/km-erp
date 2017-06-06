@@ -3,7 +3,7 @@ export class Trans{
   pl: string;
 }
 
-export const cTrans: Trans[] = [
+export const trans: Trans[] = [
 // app
   {id: 'cancel', pl: 'Anuluj'},
   {id: 'email', pl: 'email'},
@@ -29,6 +29,8 @@ export const cTrans: Trans[] = [
   {id: 'registerEmail', pl: 'Czy chcesz zarejestrować nowego użytkownika dla "{0}"? Jeżeli jeżeli chcesz potwierdzić to wpisz w poniższe pola swoje nowe hasło (zapamiętaj je). Po potwierdzeniu klawiszem "Zarejestruj" będzie możliwe zalogowanie się. Czy kontynuować?'},
   {id: 'resetByEmail', pl: 'Wyślij restujący email'},
   {id: 'password', pl: 'hasło'},
+  {id: 'upg', pl: 'Aktualizuj'},
+  {id: 'upgProgress', pl: 'System jest aktualizowany aktualnie przebiega krok X,  pozostało Y'},
   {id: 'usrEmpty', pl: 'Uzupełnij adres email w polu "Użytkownik"'},
   {id: 'usrPwd', pl: 'Wprowadź hasło'},
   {id: 'usrPwdDif', pl: 'Wprowadzone hasła są różne.'},

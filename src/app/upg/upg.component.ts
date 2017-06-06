@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as png from 'primeng/primeng';
 
+import {Observable} from 'rxjs/Rx';
+
 import {BaseComponent} from '../base/base.component';
+import {consts} from '../consts';
 
 @Component({
   selector: 'app-upg',
@@ -10,17 +13,10 @@ import {BaseComponent} from '../base/base.component';
 })
 export class UpgComponent extends BaseComponent  implements OnInit {
 
-  upgmsg: png.Message[] = [];
-  upgIfo(sErr: string){
-    this.error = [];
-    this.error.push({severity:'error', summary:this.ts('Komunikat'), detail: sErr});    
-  }
+  progress: string = this.ts('upgProgress');
 
   ngOnInit() {
-    if (!this.dm.upgraded){
-      this.upgmsg = [];
-      this.upgmsg.push({severity:'info', summary:this.ts('Komunikat'), detail: "Aktualizacja w toku pozostało x kroków z"});    
-    }
+    let timer = Observable.timer(0, 5000);
+    timer.subscribe(() => this.dm.upgOk());
   }
-
 }
