@@ -43,7 +43,7 @@ export class DataMgrService {
 
   private trans = trans;
   public logedIn: boolean = false;
-  public upgraded: boolean = false;
+  public upgResult: UpgResult = null;
   public rgtAdm: boolean = false;
  
   constructor(
@@ -58,8 +58,25 @@ export class DataMgrService {
       sTs = this.trans[i].pl;
     }
     
+    switch (args.length){
+      case 1: sTs = sf.sf.String.Format(sTs, args[0]);
+      case 2: sTs = sf.sf.String.Format(sTs, args[0], args[1]);
+      case 3: sTs = sf.sf.String.Format(sTs, args[0], args[1], args[2]);
+    }
     if (args.length > 0){
-      sTs = sf.sf.String.Format(sTs, args);
+    //   if (args[0] instanceof Array){
+    //     //args[0].array.forEach(item => sTs = sf.sf.String.Format(sTs, item));        
+    //   }
+    //   else{
+         args.forEach(item => {
+           if (item instanceof Array){
+             item.forEach(item1 => sTs = sf.sf.String.Format(sTs, item1));
+           }
+           else{
+             sTs = sf.sf.String.Format(sTs, item);
+           }
+         });
+    //   }
     }
     return sTs;
   }
@@ -79,14 +96,14 @@ export class DataMgrService {
     let p: UpgParam = new UpgParam();
     p.authToken = this.token();
     p.upgCall = call;
-    return this.bck("upg", p) as Promise<UpgResult>;
+    return (this.bck("upg", p) as Promise<UpgResult>).then(ur => this.upgResult);
   }
 
-  upgOk(){
+  upgOk(): Promise<UpgResult>{
     let p: UpgParam = new UpgParam();
     p.authToken = this.token();
     p.upgCall = 0;
-    this.bck("upgOk", p).then(ur => this.upgraded = ur.upgraded.valueOf()).catch(() => this.upgraded = false);
+    return this.bck("upgOk", p).then(ur => this.upgResult = ur).catch(() => this.upgResult = null);
   }
 
   rgtChk(){

@@ -6,6 +6,6 @@
 </p-panel>
 
 <p-panel header="Aktualizacja systemu" *ngIf="dm.rgtAdm">
-    <button pButton type="button" label="{{ts('upg')}}"></button>
+    <button pButton type="button" label="{{ts('upg')}}" (click)="upg()" [disabled]="btnUpgDisabled"></button>
 </p-panel>
 

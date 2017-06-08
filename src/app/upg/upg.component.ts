@@ -13,10 +13,24 @@ import {consts} from '../consts';
 })
 export class UpgComponent extends BaseComponent  implements OnInit {
 
-  progress: string = this.ts('upgProgress');
+  progress: string = this.ts('upgProgress', this.dm.upgResult.versionDb, this.dm.upgResult.versionRq);
+  btnUpgDisabled: boolean = false;
 
   ngOnInit() {
     let timer = Observable.timer(0, 5000);
-    timer.subscribe(() => this.dm.upgOk());
+    timer.subscribe(() => {
+      this.dm.upgOk().then(() => this.ts('upgProgress', this.dm.upgResult.versionDb, this.dm.upgResult.versionRq));
+    });
+  }
+
+  upg(){
+    if (this.dm.upgResult === null){
+      return;
+    }
+    if (this.dm.upgResult.versionDb === this.dm.upgResult.versionRq){
+      return;
+    }
+    this.btnUpgDisabled = true;
+    this.dm.upg(this.dm.upgResult.versionDb + 1).then(() => this.upg()).catch(r => this.progress = r);
   }
 }
