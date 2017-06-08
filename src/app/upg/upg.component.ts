@@ -31,6 +31,6 @@ export class UpgComponent extends BaseComponent  implements OnInit {
       return;
     }
     this.btnUpgDisabled = true;
-    this.dm.upg(this.dm.upgResult.versionDb + 1).then(() => this.upg()).catch(r => this.progress = r);
+    this.dm.upg(this.dm.upgResult.versionDb + 1).then(() => this.upg()).catch(r => {this.progress = r; this.btnUpgDisabled = false;});
   }
 }
