@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { config } from './config';
 import { UpgComponent } from './upg/upg.component';
+import { Firma1Component } from './firma1/firma1.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UpgComponent } from './upg/upg.component';
     BaseComponent,
     LoginComponent,
     MainComponent,
-    UpgComponent
+    UpgComponent,
+    Firma1Component
   ],
   imports: [
     BrowserAnimationsModule,

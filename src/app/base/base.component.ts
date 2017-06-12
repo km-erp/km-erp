@@ -21,8 +21,8 @@ export class BaseComponent implements OnInit {
 
   ts(s: string, ...args): string{
     switch (args.length){
-      case 1:  return this.dm.ts(s, args[0]);
-      case 2:  return this.dm.ts(s, args[0], args[1]);
+      case 1:  return this.dm.ts(s, args[0]); 
+      case 2:  return this.dm.ts(s, args[0], args[1]); 
       case 3:  return this.dm.ts(s, args[0], args[1], args[2]);
       default: return this.dm.ts(s);
     };

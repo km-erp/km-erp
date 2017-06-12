@@ -30,7 +30,7 @@ export const trans: Trans[] = [
   {id: 'resetByEmail', pl: 'Wyślij restujący email'},
   {id: 'password', pl: 'hasło'},
   {id: 'upg', pl: 'Aktualizuj'},
-  {id: 'upgProgress', pl: 'System jest aktualizowany, aktualnie przebiega krok: {0},  ostatni będzie: {1}'},
+  {id: 'upgProgress', pl: 'System jest aktualizowany, aktualnie przebiega krok: {0},  ostatni będzie: {1}. Po zakończeniu odświerz stronę.'},
   {id: 'usrEmpty', pl: 'Uzupełnij adres email w polu "Użytkownik"'},
   {id: 'usrPwd', pl: 'Wprowadź hasło'},
   {id: 'usrPwdDif', pl: 'Wprowadzone hasła są różne.'},

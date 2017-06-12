@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
 import {trans} from './trans';
 import {config} from './config';
-import {consts} from './consts';
+import {Consts} from './consts';
 
 class StdParam{
   public authToken: String;
@@ -22,6 +22,8 @@ class UpgParam extends StdParam{
 }
 class RgtParam extends StdParam{
   public rgtName: string;
+}
+class FirmParam extends StdParam{
 }
 
 class StdResult{
@@ -36,6 +38,12 @@ export class UpgResult extends StdResult{
 export class RgtResult extends StdResult{
   public has: Boolean;
 }
+export class FirmResult extends StdResult{
+  public firm: {
+    id: Number;
+    firmName: String;
+  }
+}
 
 
 @Injectable()
@@ -45,6 +53,8 @@ export class DataMgrService {
   public logedIn: boolean = false;
   public upgResult: UpgResult = null;
   public rgtAdm: boolean = false;
+  public consts = new Consts();
+  public firmId = null;
  
   constructor(
     private http: Http, 
@@ -59,24 +69,9 @@ export class DataMgrService {
     }
     
     switch (args.length){
-      case 1: sTs = sf.sf.String.Format(sTs, args[0]);
-      case 2: sTs = sf.sf.String.Format(sTs, args[0], args[1]);
-      case 3: sTs = sf.sf.String.Format(sTs, args[0], args[1], args[2]);
-    }
-    if (args.length > 0){
-    //   if (args[0] instanceof Array){
-    //     //args[0].array.forEach(item => sTs = sf.sf.String.Format(sTs, item));        
-    //   }
-    //   else{
-         args.forEach(item => {
-           if (item instanceof Array){
-             item.forEach(item1 => sTs = sf.sf.String.Format(sTs, item1));
-           }
-           else{
-             sTs = sf.sf.String.Format(sTs, item);
-           }
-         });
-    //   }
+      case 1: sTs = sf.sf.String.Format(sTs, args[0]); break;
+      case 2: sTs = sf.sf.String.Format(sTs, args[0], args[1]); break;
+      case 3: sTs = sf.sf.String.Format(sTs, args[0], args[1], args[2]); break;
     }
     return sTs;
   }
@@ -103,14 +98,24 @@ export class DataMgrService {
     let p: UpgParam = new UpgParam();
     p.authToken = this.token();
     p.upgCall = 0;
-    return this.bck("upgOk", p).then(ur => this.upgResult = ur).catch(() => this.upgResult = null);
+    return this.bck("upgOk", p).then(ur => {
+      if (ur.versionRq !== this.consts.versionRq || ur.versionDb !== this.consts.versionRq){
+        ur.upgraded = false;
+      }
+      this.upgResult = ur}).catch(() => this.upgResult = null);
   }
 
   rgtChk(){
     let p: RgtParam = new RgtParam;
     p.authToken = this.token();
-    p.rgtName = consts.rgtAdm;
+    p.rgtName = this.consts.rgtAdm;
     this.bck("rgtChk", p).then(ru => this.rgtAdm = ru.has.valueOf()).catch(() => this.rgtAdm = false);
+  }
+
+  firmChk(){
+    let p: FirmParam = new FirmParam;
+    p.authToken = this.token();
+    this.bck("firmByUsr", p).then(rf => this.firmId = rf.firm.id);
   }
 
   

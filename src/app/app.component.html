@@ -1,5 +1,7 @@
 <div>
   <app-login *ngIf="!dm.logedIn"></app-login>
-  <app-main *ngIf="dm.logedIn && dm.upgResult.upgraded"></app-main>
   <app-upg *ngIf="dm.logedIn && !dm.upgResult.upgraded"></app-upg>
+  <app-main *ngIf="dm.logedIn && dm.upgResult.upgraded && dm.firmId!==null"></app-main>
+  <app-firma1 *ngIf="dm.logedIn && dm.upgResult.upgraded && dm.firmId===null"></app-firma1>
+
 </div>

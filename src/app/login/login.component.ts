@@ -10,7 +10,6 @@ import * as png from 'primeng/primeng';
 import {BaseComponent} from '../base/base.component';
 import {DataMgrService} from '../data-mgr.service';
 import {config} from '../config';
-import {consts} from '../consts';
 
 @Component({
   selector: 'app-login',
